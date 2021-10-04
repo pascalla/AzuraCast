@@ -93,11 +93,12 @@ class NowPlayingApiGenerator
 
             $broadcastStart = null;
             $broadcast = $this->broadcastRepo->getLatestBroadcast($station);
+            $broadcast_id = $station->getBroadcastId();
             if (null !== $broadcast) {
                 $broadcastStart = $broadcast->getTimestampStart();
             }
 
-            $np->live = new Entity\Api\NowPlaying\Live(true, $streamer_name, $broadcastStart);
+            $np->live = new Entity\Api\NowPlaying\Live(true, $streamer_name, $broadcastStart, $broadcast_id);
         } else {
             $np->live = new Entity\Api\NowPlaying\Live(false);
         }

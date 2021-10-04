@@ -100,6 +100,8 @@ class StationStreamerRepository extends Repository
             }
         }
 
+        $station->setBroadcastId($record->getId());
+
         $this->em->flush();
         return true;
     }

@@ -189,6 +189,17 @@ class Station implements Stringable, IdentifiableEntityInterface
 
     /**
      * @OA\Property(
+     *     description="Broadcast id of the current streamer..",
+     *     example=123
+     * )
+     */
+    #[ORM\Column]
+    #[Attributes\AuditIgnore]
+    protected ?int $broadcast_id = null;
+
+
+    /**
+     * @OA\Property(
      *     description="Whether this station is visible as a public page and in a now-playing API response.",
      *     example=true
      * )
@@ -732,6 +743,16 @@ class Station implements Stringable, IdentifiableEntityInterface
     public function setIsStreamerLive(bool $is_streamer_live): void
     {
         $this->is_streamer_live = $is_streamer_live;
+    }
+
+    public function getBroadcastId(): int
+    {
+        return $this->broadcast_id;
+    }
+
+    public function setBroadcastId(int $broadcast_id): void
+    {
+        $this->broadcast_id = $broadcast_id;
     }
 
     public function getEnablePublicPage(): bool
